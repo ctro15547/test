@@ -15,12 +15,12 @@ from compiler.ast import Pass
 
 def jiesuo():
 
-    #亮屏幕
+    #亮屏幕123
     device.wake()    
     print('Light')
     time.sleep(2) 
     
-    #滑动解锁
+    #滑动解锁2
     device.drag((350,990),(350,700),0.2,5)    
     time.sleep(2)
     print('unlock')

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 
 import os,time,sys,re,string,locale
 
@@ -20,7 +20,7 @@ def jiesuo():
     print('Light')
     time.sleep(2) 
     
-    #滑动解锁
+    #滑动解锁4
     device.drag((350,990),(350,700),0.2,5)    
     time.sleep(2)
     print('unlock')
