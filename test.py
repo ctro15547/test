@@ -20,7 +20,8 @@ def jiesuo():
     print('Light')
     time.sleep(2) 
     
-    #滑动解锁2
+    #滑动解锁4
+
     device.drag((350,990),(350,700),0.2,5)    
     time.sleep(2)
     print('unlock')
