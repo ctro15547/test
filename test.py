@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 
 import os,time,sys,re,string,locale
 
@@ -15,7 +15,7 @@ from compiler.ast import Pass
 
 def jiesuo():
 
-    #亮屏幕1
+    #亮屏幕
     device.wake()    
     print('Light')
     time.sleep(2) 
