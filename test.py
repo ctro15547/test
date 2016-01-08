@@ -1,0 +1,340 @@
+# -*- coding: utf-8 -*-
+
+import os,time,sys,re,string,locale
+
+from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice, MonkeyImage
+from com.android.monkeyrunner.easy import EasyMonkeyDevice
+from com.android.monkeyrunner.easy import By
+from com.android.chimpchat.hierarchyviewer import HierarchyViewer
+from com.android.monkeyrunner import MonkeyView
+from compiler.ast import Pass
+'''
+# coding:gbk
+'''
+
+
+def jiesuo():
+
+    #亮屏幕
+    device.wake()    
+    print('Light')
+    time.sleep(2) 
+    
+    #滑动解锁
+    device.drag((350,990),(350,700),0.2,5)    
+    time.sleep(2)
+    print('unlock')
+    
+    #按HOME键返回主桌面
+    device.press('KEYCODE_HOME ',MonkeyDevice.DOWN_AND_UP)
+    time.sleep(1)
+    device.press('KEYCODE_HOME ',MonkeyDevice.DOWN_AND_UP)
+    time.sleep(1)
+    device.press('KEYCODE_HOME ',MonkeyDevice.DOWN_AND_UP)        
+    print('unlock Complete')
+    time.sleep(2)
+    
+def checkviewserver():
+    
+    print('----------------------------------')    
+    #POPEN（） 返回 CMD执行命令后所返回的语句
+    r = os.popen('adb shell service call window 3 i32 4939')
+    x = r.read()
+    print(x)
+    print('----------------------------------')
+
+
+    z = x.find('1')
+
+    if z == -1:
+        print('View Server cloes')
+    else:
+        print('View Server open')
+
+def naozhong():
+    
+    x = 1
+    
+    for a in range(0,100):
+    
+        print(x)
+    
+        device.wake()    #亮屏幕
+        print('ok1')
+        time.sleep(1)
+
+        device.drag((350,990),(350,700),0.2,5)    #开始，结束，持续时间，步骤 
+        time.sleep(1)
+        print('ok2')
+
+
+        device.touch(116,730,"DOWN_AND_UP")    #点击
+        time.sleep(1)
+        print('ok3')
+
+        device.press('KEYCODE_HOME',MonkeyDevice.DOWN_AND_UP)    #按HOME键
+        time.sleep(1)
+        print('ok4')
+
+
+        device.press('KEYCODE_POWER ',MonkeyDevice.DOWN_AND_UP)
+        time.sleep(1)
+        print("ok5")
+    
+        time.sleep(1)
+        print('''-------------------------''')
+    
+        x+=1
+        
+def huadongjiesuo():
+    
+    #亮屏幕
+    device.wake()    
+    print('ok1')
+    time.sleep(1) 
+    
+    #滑动解锁
+    device.drag((350,990),(350,700),0.2,5)    
+    time.sleep(1)
+    print('ok2')
+    
+    #按HOME键返回主桌面
+    device.press('KEYCODE_HOME ',MonkeyDevice.DOWN_AND_UP)
+    time.sleep(0.5)
+    device.press('KEYCODE_HOME ',MonkeyDevice.DOWN_AND_UP)
+    time.sleep(0.5)
+    device.press('KEYCODE_HOME ',MonkeyDevice.DOWN_AND_UP)        
+    time.sleep(1.5)
+    
+    #点设置    
+    device.touch(109,920,"DOWN_AND_UP")    
+    print('ok3')
+    time.sleep(1)
+        
+    #循环5次下拉 确保在顶端   
+    for t in range(0,5): 
+        device.drag((350,700),(350,990),0.4,10)
+        time.sleep(0.3)
+        print(t)
+       
+    print("ok4")
+    time.sleep(1.5)
+    
+    #点 桌面与锁屏
+    device.touch(350,880,"DOWN_AND_UP")
+    print('ok5')
+    time.sleep(1.5)
+    
+    #解锁方式
+    device.touch(350,510,"DOWN_AND_UP")
+    print('ok6')
+    time.sleep(1.5)
+    
+    #密码解锁
+    device.touch(310,550,"DOWN_AND_UP")
+    print('ok7')
+    time.sleep(1.5)
+    
+    #密码 1259
+    device.touch(125,654,"DOWN_AND_UP")
+    time.sleep(1)
+    device.touch(362,655,"DOWN_AND_UP")
+    time.sleep(1)
+    device.touch(361,798,"DOWN_AND_UP")
+    time.sleep(1)
+    device.touch(600,945,"DOWN_AND_UP")
+    print('ok8')
+    time.sleep(1.5)
+    
+    #重复密码
+    device.touch(125,654,"DOWN_AND_UP")
+    time.sleep(1)
+    device.touch(362,655,"DOWN_AND_UP")
+    time.sleep(1)
+    device.touch(361,798,"DOWN_AND_UP")
+    time.sleep(1)
+    device.touch(600,945,"DOWN_AND_UP")
+    print('ok9')
+    time.sleep(2)
+    
+    #滑动解锁
+    device.touch(445,345,"DOWN_AND_UP")
+    time.sleep(1.5)
+    print('ok10')
+    
+    #点HOME键
+    device.press('KEYCODE_HOME',MonkeyDevice.DOWN_AND_UP)
+    print('ok11')
+    
+    #用OS库可以输入ADB命令
+    os.system('adb devices')
+       
+def tuodong():
+    
+    device.wake()    #亮屏幕
+    print('ok1')
+    time.sleep(1) 
+
+    device.drag((350,990),(350,700),0.2,5)    #开始，结束，持续时间，步骤 
+    time.sleep(1)
+    print('ok2')
+    
+    
+    device.press('KEYCODE_HOME',MonkeyDevice.DOWN_AND_UP)
+    time.sleep(1.5)
+    
+    
+    device.drag((525,570),(256,570),0.2,1)    #开始，结束，持续时间，步骤 
+    time.sleep(1.5)
+    print('ok3')
+    
+    
+    device.drag((270,940),(590,940),1,1)    #开始，结束，持续时间，步骤 
+    time.sleep(1.5)
+    print('ok4')
+    
+    device.drag((590,940),(270,940),1,1)    #开始，结束，持续时间，步骤 
+    time.sleep(1.5)
+    print('ok5')
+
+def jisuanji():
+    
+    #滑动解锁
+    jiesuo()  
+    
+    #打开计算器
+    device.startActivity(component='com.tencent.qrom.calculator/com.tencent.qrom.calculator.Calculator')   
+    time.sleep(1)
+    print('ok')
+       
+    #将device对象包装成EasyMonkeyDevice类对象
+
+    ed = EasyMonkeyDevice(device)    
+    print('okok')
+    
+    #96*3=
+    ed.touch(By.id('id/digit9'),MonkeyDevice.DOWN_AND_UP)
+
+    ed.touch(By.id('id/digit6'),MonkeyDevice.DOWN_AND_UP)
+
+    ed.touch(By.id('id/mul'),MonkeyDevice.DOWN_AND_UP)
+
+    ed.touch(By.id('id/digit3'),MonkeyDevice.DOWN_AND_UP)
+
+    ed.touch(By.id('id/equal'),MonkeyDevice.DOWN_AND_UP)
+
+    print('ok2')
+    
+    #通过ID获取mText
+    h = ed.getText(By.id('id/digit9'))
+
+    print(h)
+        
+def openapp(appname):
+    
+    #appname'com.ibox.calculators/com.ibox.calculators.CalculatorActivity' 
+
+    device.startActivity(component=appname)
+    print('open app complete')
+    
+    time.sleep(5)
+               
+def ClickbButton(Parent,*Child): 
+    
+    
+    # 获取一个父控件parent
+    parent  = viewer.findViewById(Parent)
+    print('get Parent contr')
+    time.sleep(0.1)
+
+    # 在父控件parent 下找到目标控件
+    button = viewer.findViewById(Child[0],parent)
+    print('get child contr')
+    time.sleep(0.1)  
+    
+    
+    #打印目标控件 的 m_text
+    #现在text为unicude类型
+    text = viewer.getText(button)
+    #以utf-8格式打印TEXT内容
+    print ( "m_text=",text.encode('utf-8'))
+    #这里text.encode('utf-8')就变成了字符串类型
+    print(type(text.encode('utf-8')))
+    
+    #获得目标控件坐标
+    coordinate = viewer.getAbsoluteCenterOfView(button)
+    print coordinate
+    
+    #coordinate类型跟游戏脚本里的坐标类型相似！！！！！！！！！！！！！！！
+    xx = coordinate.x
+    yy = coordinate.y
+    
+    #点击坐标
+    device.touch(xx,yy,MonkeyDevice.DOWN_AND_UP) 
+    print('Click',Child[0])
+    print('------------------------')
+
+def Screenshot():
+    now = time.strftime("%Y-%m-%d-%H-%M-%S")    
+    result = device.takeSnapshot()
+    result.writeToFile('e:/'+'截图'.decode('utf-8')+now+'.png','png')
+    print('Screenshot') 
+
+def APPInstall(appaaa):
+    device.installPackage(appaaa)
+    print('Install APP')
+def APPUnInstall(aaapp):
+    device.removePackage(aaapp)
+    print('pass')   
+  
+print('Start')
+#mail()---------------------------------------------------------------------------------------------------------------------------------------------------
+
+#appname='com.ibox.calculators/com.ibox.calculators.CalculatorActivity'
+
+
+#获得手机的对象  
+device = MonkeyRunner.waitForConnection()
+time.sleep(0.3)
+if not device:
+    print("getmobile break")
+else:
+    print("getmobile Connect")
+ 
+  
+# 把DEVICE包装成了 HierarchyViewer类对象
+# VIEWER 现在就可以用 HierarchyViewer命令来操作拉
+viewer = device.getHierarchyViewer()
+print('Packaging success')
+
+try:
+    checkviewserver()
+
+    jiesuo()
+    
+    #安装APP
+    #APPInstall('E:\workspace\monkeytext1\duoduojisuanqi.apk')
+    
+    time.sleep(2)
+
+    openapp('com.ibox.calculators/com.ibox.calculators.CalculatorActivity')
+
+    #9+4=
+    ClickbButton('id/simplePad','id/digit9')
+    ClickbButton('id/simplePad','id/plus')
+    ClickbButton('id/simplePad','id/digit4')
+    ClickbButton('id/simplePad','id/equal')
+
+    time.sleep(3)
+    #关闭一个应用
+    print('close app')
+    os.system('adb shell am force-stop com.ibox.calculators')
+    time.sleep(2)
+    
+    #卸载APP
+    #APPUnInstall('com.ibox.calculators')
+
+except:
+    Screenshot()
+    print('errorrrrrrrrrrrrrr')    
+
