@@ -1,0 +1,15 @@
+def check_xml():
+    ll = [Y,T,H]
+    connt = 0
+    x = '''get xml()'''
+    while connt < 10:
+        for g in ll:
+            if x.find(g) != -1:
+                print('click {}'.format(g))
+                connt = 0
+                time.sleep(2)
+                x = '''get xml()'''
+            else:
+                x = '''get xml()'''
+        connt += 1
+        time.sleep(2)
