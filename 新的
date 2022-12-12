@@ -13,3 +13,12 @@ def check_xml():
                 x = '''get xml()'''
         connt += 1
         time.sleep(2)
+
+
+from queue import Queue
+log_queue = Queue(2)
+for x in range(100):
+    log_queue.put(x)
+    if log_queue.full():
+        log_queue.get()
+print(log_queue.get())
