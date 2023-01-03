@@ -22,3 +22,4 @@ for x in range(100):
     if log_queue.full():
         log_queue.get()
 print(log_queue.get())
+123
