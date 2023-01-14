@@ -23,3 +23,5 @@ for x in range(100):
         log_queue.get()
 print(log_queue.get())
 123
+
+ffprobe -print_format json -loglevel quiet -show_stream
